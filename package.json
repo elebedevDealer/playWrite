@@ -1,0 +1,16 @@
+{
+  "name": "PlayWrite",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.33.0"
+  },
+  "scripts": {
+    "ptest": "yarn playwright test",
+    "report": "npx playwright show-report"
+  },
+  "dependencies": {
+    "axios": "^1.4.0"
+  }
+}

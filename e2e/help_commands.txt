@@ -1,0 +1,72 @@
+//div/div/div/div/h1[text()="Sign in"]
+   
+    //await expect(page.locator('form > button')).toBeVisible();
+    
+    //await expect(page.locator('button')).toContainText('Sign in');
+    //await expect (page.getByRole('button', {name: 'Sign in'})).toBeVisible();
+   
+    //await expect(page.locator('button')).getByText('Sign in').toBeVisible();
+    //await expect(page.getByText('Sign in')).toBeVisible();
+    //const locator = page.getByRole('link', {name: 'Need an account?'})
+
+    //await (locator.hover());
+
+    //  await page.getByRole('navigation').getByRole('link', { name: 'conduit' }).click();
+    //await expect(page.locator('link', {name: 'Need an account?'})).toContainText('Need an account?');
+    //await expect (page.getByRole('link', {name: 'Need an account?'}).hover());
+
+    //  await expect(page.locator('.sidebar')).toContainText('Popular Tags');
+    //await expect(page).locator('data-qa-type="feed-tab"');
+    //await page.$('[data-qa-type="feed-tab"]');
+    // Expects the URL to contain login.
+    //await expect(page).toHaveURL(/.*login/);
+
+    await page.getByRole('link', { name: 'Sign in '}).click();
+
+    // Expects the URL to contain login.
+    await expect(page).toHaveURL(/.*login/);
+
+    // Click the Home in link.
+    //await page.getByRole('link', { name: ' Home '}).click();
+
+    await page.locator('[data-qa-id="site-footer"] > a.logo-font.router-link-active').click();
+    
+    //await page.getByRole('contentinfo').getByRole('link', { name: 'conduit' }).click();
+
+
+    //await page.getByRole('navigation').getByRole('link', { name: 'conduit' }).click();
+
+    //await page.getByRole('footer').getByRole('link')
+
+    //await page.getByTestId('site-header').click();
+    /*await page
+    .getByRole('navigation')
+    .filter('data-qa-id', {hasText: 'conduit'})).click();
+
+
+    await page
+    .getByRole('listitem')
+    .filter({ has: page.getByRole('heading', { name: 'Product 2' })})
+    .getByRole('button', { name: 'Add to cart' })
+    .click() */
+    //await page.$('data-qa-id="site-header"');
+    //await (page.locator('data-qa-id', {hasText: 'conduit'})).click();
+    //await expect (page.getByRole('link', {name: 'Global Feed'})).toHaveId('data-qa-id="feed-tabs"');
+            //.getByRole('listitem')
+           // .filter({hasText: 'Global Feed'})  .toContainText('Global Feed'). tohaveid('data-qa-id="feed-tabs"') .toHaveId('feed-tabs')
+            //.isVisible());
+
+              // Expects the URL of main page.
+    //await expect(page.locator('data-qa-id')).toContainText(' Global Feed');
+    //await expect(page).toHaveURL(/./);
+
+    //await expect(page.getByRole('heading', { name: 'Sign in'} )).toContainText('Sign in');
+    
+    // Check existing element on login page
+    //await expect(page.locator('button')).toContainText('Sign in');
+
+    //const email = await page.locator('[type="email"].form-control');
+
+
+
+    const random = Math.random().toString(36).substring(2,7);
