@@ -13,7 +13,7 @@ test("simple login", async ({ page }) => {
 
     // Fill email. 
     const email = await page.locator('//input[@type="email" and @placeholder="Email"]')
-    const emailValue = 'demo@learnwebdriverio.com'
+    const emailValue = '-'
         
     email
         .fill(emailValue);
@@ -24,11 +24,11 @@ test("simple login", async ({ page }) => {
     // Fill password.
     await page
         .locator('//input[@type="password" and @placeholder="Password"]')
-        .fill('wdiodemo')
+        .fill('-')
 
     // Check that password value was inserted    
     await expect(page
-        .locator('//input[@type="password" and @placeholder="Password"]')).toHaveValue('wdiodemo')        
+        .locator('//input[@type="password" and @placeholder="Password"]')).toHaveValue('-')        
     
     // Click on 'Sign in' button
     await page.locator('//button[(contains(@class,"btn-lg"))and(contains(text(),"Sign in"))]').click();
@@ -44,11 +44,11 @@ test("missing email", async ({ page }) => {
     // Fill password.
     await page
         .locator('//input[@type="password" and @placeholder="Password"]')
-        .fill('wdiodemo')
+        .fill('-')
 
     // Check that passord value was inserted    
     await expect(page
-        .locator('//input[@type="password" and @placeholder="Password"]')).toHaveValue('wdiodemo')        
+        .locator('//input[@type="password" and @placeholder="Password"]')).toHaveValue('-')        
     
     // Click on 'Sign in' button
     await page.locator('//button[(contains(@class,"btn-lg"))and(contains(text(),"Sign in"))]').click();
@@ -61,7 +61,7 @@ test("missing password", async ({ page }) => {
     
     // Fill email. 
     const email = await page.locator('//input[@type="email" and @placeholder="Email"]')
-    const emailValue = 'demo@learnwebdriverio.com'
+    const emailValue = '-'
         
     email
         .fill(emailValue);

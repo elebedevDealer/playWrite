@@ -17,15 +17,6 @@ async getToken(email, password){
 
 }
 
-/*async addArticle(author, title, description, body, tagList){
-  await this.api
-  await this.getToken('demo@learnwebdriverio.com','wdiodemo')
-  await this.api
-  .post('/articles', {article:{author, title, description, body, tagList}});
-  
-
-}
-*/
 
 async addArticle(email, password, details){
   const token = await this.getToken(email, password);

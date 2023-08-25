@@ -11,17 +11,17 @@ test.beforeEach(async ({page}) => {
 
 test ("object login", async ({page}) => {
     
-    await objectSignIn.login('demo@learnwebdriverio.com','wdiodemo')
+    await objectSignIn.login('-','-')
     await expect (objectSignIn.settings).toContainText('Settings');
 });
 
 test ("object error email", async ({page}) => {
-    await objectSignIn.login('','wdiodemo');
+    await objectSignIn.login('','-');
     await expect (objectSignIn.errorMesssage).toContainText(`email can't be blank`);
 });
 
 test ("object error password", async ({page}) => {
-    await objectSignIn.login('demo@learnwebdriverio.com','');
+    await objectSignIn.login('-','');
     await expect (objectSignIn.errorMesssage).toContainText(`password can't be blank`);
 });
 

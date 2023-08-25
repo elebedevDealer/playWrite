@@ -30,7 +30,7 @@ test ("object email is not valid", async ({page}) => {
 });
 
 test ("object taken email", async ({page}) => {
-    await objectSignUp.fillFields('elebedev1','demo@learnwebdriverio.com','123456');
+    await objectSignUp.fillFields('elebedev1','-','123456');
     await objectSignUp.signUp.click();
     await expect (objectSignUp.errorMesssage).toContainText(`email is already taken.`);
 });
@@ -42,7 +42,7 @@ test ("register", async ({page}) => {
 });
 
 test ("object taken all", async ({page}) => {
-    await objectSignUp.fillFields('demouser','demo@learnwebdriverio.com','123456');
+    await objectSignUp.fillFields('demouser','-','123456');
     await objectSignUp.signUp.click();
     await expect (objectSignUp.errorMesssages).toContainText(`username is already taken.`);
     await expect (objectSignUp.errorMesssages).toContainText(`email is already taken.`);
