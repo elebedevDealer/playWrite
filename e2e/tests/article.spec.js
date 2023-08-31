@@ -51,5 +51,5 @@ test ("edit article through API", async({page}) => {
     await expect (objectArticle.createdArticleBody).toHaveText("8888")
 
     const articleDelete = await api.deleteArticle('demo@learnwebdriverio.com','wdiodemo', articleResponce.slug)
-    console.log(articleDelete)
+    console.log(articleDelete) 
 });
