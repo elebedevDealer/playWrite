@@ -34,6 +34,14 @@ async addArticle(email, password, details){
   return response.data.article;
 }
 
+async deleteArticle(email, password, slug) {
+  const token = await this.getToken(email, password);
+  return this.api.delete(`articles/${slug}`, {
+      headers: { Authorization: `Token ${token}` }
+  });
+}
+
+
 /*
 var data = JSON.stringify({
   "article": {
