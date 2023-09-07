@@ -1,6 +1,8 @@
 const { expect } = require("@playwright/test");
-//const axios = require('axios');
-import axios from "axios" 
+const axios = require('axios');
+
+
+//import axios from "axios" 
 
 exports.API = class API {
     
@@ -18,6 +20,7 @@ async getToken(email, password){
 }
 
 
+
 async addArticle(email, password, details){
   const token = await this.getToken(email, password);
   console.log(token);
@@ -32,6 +35,34 @@ async addArticle(email, password, details){
   );
   console.log(response);
   return response.data.article;
+}
+
+async editArticle(email, password, details2, slug){
+  const token = await this.getToken(email, password);
+  //const article = await this.addArticle(email, password, details)
+  //console.log(article);
+  const body = details2
+  const headers = {
+    "headers": {
+      "Authorization": `Token ${token}`,
+    },
+  };
+  const response = await this.api.put(`articles/${slug}`, body, headers
+  );
+  console.log(response);
+  
+}
+
+async getArticle(email, password, slug){
+  const token = await this.getToken(email, password);
+  const headers = {
+    "headers": {
+      "Authorization": `Token ${token}`,
+    },
+  };
+  const response = await this.api.get(`articles/${slug}`, headers);
+  console.log(response);
+  return response.data.article
 }
 
 async deleteArticle(email, password, slug) {
