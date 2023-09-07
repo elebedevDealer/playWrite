@@ -48,7 +48,7 @@ test ("create article through API1", async({page}) => {
         "tagList":[]}}
         
         let articleDetails2;
-        let title2 = "dick " + chance.sentence({words: 1}) + " Dick Head";
+        let title2 = `dick ${chance.sentence({words: 1})} Dick Head`;
         let description2 = "dick2 " +chance.sentence({words :2})
         let body2 = "dick3 " + chance.paragraph({sentence: 2})
 
