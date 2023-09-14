@@ -3,40 +3,33 @@ const { API } = require("../helper/API");
 const {Chance} = require('chance');
 const {users} = require("../objects/users")
 
-function articleDetails(){
+function articleDetailz() {
     const chance = new Chance();
     let articleDetails;
-    let title = "dick " + chance.sentence({words: 1});
-    let description = "dick2 " + chance.sentence({words :2})
-    let body = "dick3 " + chance.paragraph({sentence: 2})
+    let title = "dick " + chance.sentence({ words: 1 });
+    let description = "dick2 " + chance.sentence({ words: 2 });
+    let body = "dick3 " + chance.paragraph({ sentence: 2 });
   
-    articleDetails = `{"article":{
-    "author":{},
-    "title": "${title}",
-    "description": "${description}",
-    "body": "${body}",
-    "tagList":[]}}`
-    
+    articleDetails = {
+      article: {
+        author: {},
+        title: title,
+        description: description,
+        body: body,
+        tagList: [],
+      },
+    };
+  
     return articleDetails;
   }
-
-test ("create article through API1", async({page}) => {
-    const api = new API ("https://conduit-api.learnwebdriverio.com/api");
-   // console.log(articleDetails)
-    //let article = await api.articleDetails();
-
-    console.log(articleDetails());
-    
-    console.log(users.user1);
-    const articleResponce = await api.addArticle(users.user1, articleDetails());
-
-    
-
+  
+  test("create article through API1", async ({ page }) => {
+    const api = new API("https://conduit-api.learnwebdriverio.com/api");
+    const articleResponce = await api.addArticle(users.user1, articleDetailz());
     const getArticle = await api.getArticle(users.user1, articleResponce.slug);
-    
-    await expect(getArticle.title).toEqual(articleDetails.article.title)
-
-})
+  
+    await expect(getArticle.title).toEqual(articleDetails.article.title);
+  });
 
     test ("edit article through API2", async({page}) => {
         const api = new API ("https://conduit-api.learnwebdriverio.com/api");
