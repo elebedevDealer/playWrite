@@ -1,8 +1,10 @@
 const { expect } = require("@playwright/test");
 const axios = require('axios');
-
+const {Chance} = require('chance');
+const { users } = require("../objects/users");
 
 //import axios from "axios" 
+
 
 exports.API = class API {
     
@@ -21,8 +23,8 @@ async getToken(email, password){
 
 
 
-async addArticle(email, password, details){
-  const token = await this.getToken(email, password);
+async addArticle(user, details){
+  const token = await this.getToken(user.email, user.password);
   console.log(token);
   const body = details;
   const headers = {
@@ -31,6 +33,7 @@ async addArticle(email, password, details){
     },
   };
 
+  
   const response = await this.api.post('/articles', body, headers
   );
   console.log(response);
@@ -53,7 +56,7 @@ async editArticle(email, password, details2, slug){
   
 }
 
-async getArticle(email, password, slug){
+async getArticle(user, slug){
   const token = await this.getToken(email, password);
   const headers = {
     "headers": {

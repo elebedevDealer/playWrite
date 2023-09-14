@@ -62,7 +62,7 @@ test ("edit article through API/ui", async({page}) => {
     
 })
 
-test ("edit article through API2", async({page}) => {
+test ("edit article through API/ui2", async({page}) => {
     const api = new API ("https://conduit-api.learnwebdriverio.com/api");
     const chance = new Chance();
     
