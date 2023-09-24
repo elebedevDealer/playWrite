@@ -21,6 +21,8 @@ function articleDetailz(marker = 'default') {
     };
   
     return articleDetails;
+    //egor dick
+    
   }
   
   test("create article through API1", async ({ page }) => {
