@@ -3,10 +3,10 @@ const { API } = require("../helper/API");
 const {Chance} = require('chance');
 const {users} = require("../objects/users")
 
-function articleDetailz() {
+function articleDetailz(marker = 'default') {
     const chance = new Chance();
     let articleDetails;
-    let title = "dick " + chance.sentence({ words: 1 });
+    let title = ` ${marker}` + chance.sentence({ words: 1 });
     let description = "dick2 " + chance.sentence({ words: 2 });
     let body = "dick3 " + chance.paragraph({ sentence: 2 });
   
@@ -25,96 +25,49 @@ function articleDetailz() {
   
   test("create article through API1", async ({ page }) => {
     const api = new API("https://conduit-api.learnwebdriverio.com/api");
-    const articleResponce = await api.addArticle(users.user1, articleDetailz());
+    const marker = 'Article create';
+    const firstArticle = articleDetailz(marker);
+
+
+    const articleResponce = await api.addArticle(users.user1, firstArticle);
     const getArticle = await api.getArticle(users.user1, articleResponce.slug);
-  
-    await expect(getArticle.title).toEqual(articleDetails.article.title);
+   
+    
+    await expect(getArticle.title).toEqual(firstArticle.article.title);
+
+    console.log(getArticle.title);
   });
 
     test ("edit article through API2", async({page}) => {
         const api = new API ("https://conduit-api.learnwebdriverio.com/api");
-        const chance = new Chance();
         
-        let articleDetails;
-        let title = "dick " + chance.sentence({words: 1});
-        let description = "dick2 " +chance.sentence({words :2})
-        let body = "dick3 " + chance.paragraph({sentence: 2})
+        const articleResponce = await api.addArticle(users.user1, articleDetailz())
+
+        const updatedArticle = articleDetailz()
+        console.log(updatedArticle.article.title + '11111');
+        
+        const updatedArticleResponce = await api.editArticle(users.user1, updatedArticle, articleResponce.slug)
+        
+        console.log(`Title from response: ${updatedArticleResponce.title}`);
     
-        articleDetails = {"article":{
-        "author":{},
-        "title": title,
-        "description": description,
-        "body": body,
-        "tagList":[]}}
-        
-        let articleDetails2;
-        let title2 = `dick ${chance.sentence({words: 1})} Dick Head`;
-        let description2 = "dick2 " +chance.sentence({words :2})
-        let body2 = "dick3 " + chance.paragraph({sentence: 2})
-
-        articleDetails2 = {"article":{
-            "author":{},
-            "title": title2,
-            "description": description2,
-            "body": body2,
-            "tagList":[]}}
-
-        console.log(articleDetails)
-        
-        const articleResponce = await api.addArticle('demo@learnwebdriverio.com','wdiodemo', articleDetails)
-
-        //console.log(articleResponce)
-        
-        const articleResponce2 = await api.editArticle('demo@learnwebdriverio.com','wdiodemo', articleDetails2, articleResponce.slug)
-    
-        console.log(articleResponce2)
-
-
-
+        await expect(updatedArticleResponce.title).toEqual(updatedArticle.article.title);
 })
 
 test ("delete article through API2", async({page}) => {
     const api = new API ("https://conduit-api.learnwebdriverio.com/api");
-    const chance = new Chance();
+    const articleResponce = await api.addArticle(users.user1, articleDetailz())
+
+    const updatedArticle = articleDetailz()
+    console.log(updatedArticle);
+        
+    const updatedArticleResponce = await api.editArticle(users.user1, updatedArticle, articleResponce.slug)
     
-    let articleDetails;
-    let title = "dick " + chance.sentence({words: 1});
-    let description = "dick2 " +chance.sentence({words :2})
-    let body = "dick3 " + chance.paragraph({sentence: 2})
+    console.log(updatedArticleResponce);
 
-    articleDetails = {"article":{
-    "author":{},
-    "title": title,
-    "description": description,
-    "body": body,
-    "tagList":[]}}
     
-    let articleDetails2;
-    let title2 = "dick " + chance.sentence({words: 1}) + " Dick Head";
-    let description2 = "dick2 " +chance.sentence({words :2})
-    let body2 = "dick3 " + chance.paragraph({sentence: 2})
-
-    articleDetails2 = {"article":{
-        "author":{},
-        "title": title2,
-        "description": description2,
-        "body": body2,
-        "tagList":[]}}
-
-    console.log(articleDetails)
-    
-    const articleResponce = await api.addArticle('demo@learnwebdriverio.com','wdiodemo', articleDetails)
-
-    //console.log(articleResponce)
-    
-    const articleResponce2 = await api.editArticle('demo@learnwebdriverio.com','wdiodemo', articleDetails2, articleResponce.slug)
-
-    //console.log(articleResponce2)
-    
-
-    const articleDelete = await api.deleteArticle('demo@learnwebdriverio.com','wdiodemo', articleResponce.slug)
+    const articleDelete = await api.deleteArticle(users.user1, articleResponce.slug)
     console.log(articleDelete)
 
-
+    await expect(articleDelete.data).toBeFalsy();
 
 })

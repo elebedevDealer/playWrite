@@ -36,14 +36,12 @@ async addArticle(user, details){
   
   const response = await this.api.post('/articles', body, headers
   );
-  console.log(response);
+  //console.log(response);
   return response.data.article;
 }
 
-async editArticle(email, password, details2, slug){
-  const token = await this.getToken(email, password);
-  //const article = await this.addArticle(email, password, details)
-  //console.log(article);
+async editArticle(user, details2, slug){
+  const token = await this.getToken(user.email, user.password);
   const body = details2
   const headers = {
     "headers": {
@@ -52,61 +50,26 @@ async editArticle(email, password, details2, slug){
   };
   const response = await this.api.put(`articles/${slug}`, body, headers
   );
-  console.log(response);
-  
+  //console.log(response);
+  return response.data.article;
 }
 
 async getArticle(user, slug){
-  const token = await this.getToken(email, password);
+  const token = await this.getToken(user.email, user.password);
   const headers = {
     "headers": {
       "Authorization": `Token ${token}`,
     },
   };
   const response = await this.api.get(`articles/${slug}`, headers);
-  console.log(response);
+  //console.log(response);
   return response.data.article
 }
 
-async deleteArticle(email, password, slug) {
-  const token = await this.getToken(email, password);
+async deleteArticle(user, slug) {
+  const token = await this.getToken(user.email, user.password);
   return this.api.delete(`articles/${slug}`, {
       headers: { Authorization: `Token ${token}` }
   });
 }
-
-
-/*
-var data = JSON.stringify({
-  "article": {
-    "author": {},
-    "title": "d111111",
-    "description": "a1111wacfa",
-    "body": "1111afaf",
-    "tagList": []
-  }
-});
-
-var config = {
-  method: 'post',
-  url: 'https://conduit-api.learnwebdriverio.com/api/articles',
-  headers: { 
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYWM4YWZmNzdhZjZkMWQwMDNjMTM5MiIsInVzZXJuYW1lIjoiZGVtb3VzZXIiLCJleHAiOjE2OTY1OTQ0ODcsImlhdCI6MTY5MTQxMDQ4N30.MlfB-754_Ch3PJ8Z2pfOgMW-ZBi6NXURtW87M6q3E6I', 
-    'Content-Type': 'application/json'
-  },
-  data : data
-};
-
-
-async sendRequest(config){
-    await ();
-axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-})
-.catch(function (error) {
-  console.log(error);
-});
-}
-*/
 }
