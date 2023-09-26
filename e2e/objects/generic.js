@@ -13,7 +13,7 @@ exports.Generic = class Generic{
 }
 
 async load(){
-    await this.page.goto(url);
+    await this.page.goto("./");
 }
 
 };

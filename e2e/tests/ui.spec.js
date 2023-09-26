@@ -6,26 +6,22 @@ const { ObjectSignIn } = require("../objects/login.js");
 const { Generic } = require("../objects/generic")
 const {users} = require("../objects/users")
 const {chromium} = require("/Users/elebedev/PlayWrite/node_modules/playwright-core")
+test.use({ storageState: 'playwright/.auth/user.json' });
     
-const chance = new Chance();
 
-    let title = "dick " + chance.sentence({words: 1});
-    let description = "dick2 " +chance.sentence({words :2})
-    let body = "dick3 " + chance.paragraph({sentence: 2})
 
 
 test ("create article through API/ui", async({page}) => {
-    const api = new API ("http://localhost:3000/api/");
-    generic = new Generic(page);
+    //const api = new API ("http://localhost:3000/api/");
+    const generic = new Generic(page);
 
-    const token = await chromium.launch(() => {
-        return api.getAuthToken(user1.email, user1.password);
-    });
-
-    await generic.load();
-
+    //const token = await chromium.launch(() => {
+    //    return api.getAuthToken(user1.email, user1.password);
+    //});
 
     
+    
+    await generic.load();
 
     let objectArticle = new ObjectArticle(page);
     await objectArticle.newArticle.click();
