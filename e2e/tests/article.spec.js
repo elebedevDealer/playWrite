@@ -4,12 +4,12 @@ const { ObjectSignIn } = require("../objects/login.js");
 const { API } = require("../helper/API");
 
 
-/*test.beforeEach(async ({page}) => {
+test.beforeEach(async ({page}) => {
     let objectSignIn = new ObjectSignIn(page);
     await objectSignIn.goto();
     await objectSignIn.login("demo@learnwebdriverio.com", "wdiodemo");
 });
-*/
+
 
 test ("create article", async({page}) => {
     let objectArticle = new ObjectArticle(page);

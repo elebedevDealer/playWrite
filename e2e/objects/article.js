@@ -11,6 +11,7 @@ exports.ObjectArticle = class ObjectArticle {
         this.articleTags = page.locator('//input[@data-qa-id="editor-tags"]');
         this.publish = page.locator('//button[@data-qa-id="editor-publish"]');
         this.createdArticleBody = page.locator('//div[@data-qa-id="article-body"]/p');
+        this.createdArticleDescription = page.locator('')
         this.editArticle = page.locator('//div[@class="banner"]//a[@data-qa-id="article-edit"]');
 
     }
