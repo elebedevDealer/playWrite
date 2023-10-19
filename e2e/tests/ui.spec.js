@@ -5,7 +5,7 @@ const { ObjectArticle} = require("../objects/article");
 const { ObjectSignIn } = require("../objects/login.js");
 const { Generic } = require("../objects/generic")
 const {users} = require("../objects/users")
-const {chromium} = require("/Users/elebedev/PlayWrite/node_modules/playwright-core")
+const {chromium} = require("playwright-core")
 test.use({ storageState: 'playwright/.auth/user.json' });
     
 
